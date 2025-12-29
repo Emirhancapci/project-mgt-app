@@ -1,59 +1,131 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Filament Project Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Modern ve güvenli bir Proje Yönetim Platformu.
+Laravel 12, Filament v4, Livewire 3 ve Shield v4 kullanılarak geliştirilmiştir.
 
-## About Laravel
+ ## 🚀 Özellikler
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- ✅ Admin Panel (Filament v4)
+- 🔐 Rol bazlı erişim kontrolü (Shield v4 + Spatie Permission)
+- 👥 Client yönetimi
+- 📁 Proje yönetimi (görsel yükleme, müşteri ve kategori ilişkisi)
+- 🗂️ Category sistemi (Project / Task türleri)
+- 📝 Task yönetimi (öncelik, durum, due date, kullanıcı atama)
+- 🔗 Relation Managers
+- Client → Projects
+- Project → Tasks
+- User → Tasks
+- 📊 Dashboard widget’ları (System Overview, Recent Tasks, Recent Projects)
+- ⚡ Livewire ile reactive frontend proje listesi
+- 🎨 Responsive arayüz (Filament + Tailwind)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+ ## 🛠️ Teknolojiler
+-  Backend: Laravel 12
+-  Admin Panel: Filament v4
+-  Authorization: Shield v4, Spatie Permission
+-  Frontend: Livewire 3, Tailwind CSS
+-  Database: MySQL
+-  PHP: 8.2+
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+  ## 📦 Kurulum
+```bash
+# Repository'yi klonlayın
+git clone https://github.com/Emirhancapci/project-mgt-app.git
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+# Proje dizinine gidin
+cd project-mgt-app
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Bağımlılıkları yükleyin
+composer install
+npm install
 
-## Laravel Sponsors
+# .env dosyasını oluşturun
+cp .env.example .env
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# Uygulama anahtarı oluşturun
+php artisan key:generate
 
-### Premium Partners
+# Veritabanını oluşturun ve migrate edin
+php artisan migrate
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# Filament v4 Kurulumu
+composer require filament/filament:"^4.0"
+php artisan filament:install --panels
 
-## Contributing
+# Shield v4 Kurulumu
+composer require bezhansalleh/filament-shield:4.0.0-beta
+php artisan vendor:publish --tag="filament-shield-config"
+php artisan shield:super-admin
+php artisan shield:generate
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Uygulamayı başlatın
+php artisan serve
+npm run dev
+```
 
-## Code of Conduct
+## 💾 Veritabanı Yapısı
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+-  `categories` - Kategoriler
+-  `clients` - Müşteriler
+-  `projects` - Projeler     
+-  `tasks` - Görevler        
+-  `users` - Kullanıcılar
+-  `model_has_roles` - Spatie Permission İlişkileri
 
-## Security Vulnerabilities
+  ## 🎯 Kullanım
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+-  Admin paneline `/admin` adresinden giriş yap.
+-  Clients bölümünden müşteri oluştur.
+-  Categories bölümünden kategori oluştur.
+-  Projects bölümünden projeleri oluştur ve client / category ilişkilendir.
+-  Tasks bölümünden görev ekle, kullanıcı ata, öncelik ve bitiş tarihi belirle.
+-  Dashboard üzerinden sistem özetini ve son eklenen projeleri ve görevleri takip et.
+-  Canlı proje listesini ana sayfada Livewire ile görüntüle.
 
-## License
+  ## 📸 Ekran Görüntüleri
+   
+  <table>
+  <tr>
+    <td colspan="2"><img width="1800" alt="Kategori Listesi" src="https://github.com/user-attachments/assets/8c4fef62-c973-473c-9819-cd6957637e30" /></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><b>Dashboard</b></td>
+  </tr>
+      <tr>
+    <td><img width="900" alt="Kategori Listesi" src="https://github.com/user-attachments/assets/8b247efd-2f90-4bbc-9dd4-403efeedce1c" /></td>
+    <td><img width="900" alt="Kategori Görüntüle" src="https://github.com/user-attachments/assets/b43a4aeb-f686-4d4b-9bbe-a34ba2fe3064" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Kategori Listesi</b></td>
+    <td align="center"><b>Kategori Görüntüle</b></td>
+  </tr>
+       <tr>
+    <td><img width="900" alt="Kategori Oluştur" src="https://github.com/user-attachments/assets/55df8da3-77d9-4932-b73e-f5af692c5e87" /></td>
+    <td><img width="900" alt="Kategori Güncelle" src="https://github.com/user-attachments/assets/dd84f614-ee54-430c-8ad7-6bf17f72adf9" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Kategori Oluştur</b></td>
+    <td align="center"><b>Kategori Güncelle</b></td>
+  </tr> 
+      <!-- <tr>
+    <td><img width="900" alt="Müşteri Listesi" src="" /></td>
+    <td><img width="900" alt="Müşteri Görüntüle" src="" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Müşteri Listesi</b></td>
+    <td align="center"><b>Müşteri Görüntüle</b></td>
+  </tr>
+       <tr>
+    <td><img width="900" alt="Müşteri Oluştur" src="" /></td>
+    <td><img width="900" alt="Müşteri Güncelle" src="" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Müşteri Oluştur</b></td>
+    <td align="center"><b>Müşteri Güncelle</b></td>
+  </tr> -->
+</table>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+  
